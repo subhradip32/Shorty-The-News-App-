@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorty</title>
+</head>
+<body style="background-color: rgb(63, 63, 63);">
+    <h1 style="text-align: center;font-size: 55px;color: skyblue;font-family: sans-serif,Comic Sans,Arial, Helvetica;">Shorty</h1>
+    <form action="" method="POST" style="margin: auto;display: block;">{% csrf_token %}
+        <select name="_country" style="font-size: 30px; width: 500px;padding: 5px;border: 1px transparent;border-radius: 25px;text-align: center;">
+            {% for C in Country %}
+                <option value="{{C.CCode}}">
+                    {{C.CName}}
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" name="_submit" value="Search" style="font-size: 20px;border: 1px transparent;border-radius: 30px; width: auto;background-color: skyblue;padding: 15px;">
+    </form>
+    
+    <!-- printing all the gathered News -->
+    {% for nobjects in NewsFeeds %}
+    <div style="border: 1px solid black;padding:5px;margin:10px;border-radius: 22px; background-color: skyblue;" id="ParentFeed">
+        <h1 class="Headline" style="text-align: center;font-size: 50px;">{{nobjects.0}}</h1>
+        <h3 class="Description" style="font-size: 30px;">{{nobjects.1}}</h3>
+        <a href={{nobjects.2}}  target=”_blank”  class="MoreLink" style="font-size: 20px;">view more</a><br><br>     
+        <img src="{{nobjects.3}}" style="max-width:50%;height:auto" class="news_image">
+    </div>
+    {% endfor %}
+</body>
+</html>
